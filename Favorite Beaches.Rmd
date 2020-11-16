@@ -1,0 +1,28 @@
+---
+title: "My favorite beaches"
+author: "Enna Martínez"
+date: "15/11/2020"
+output: html_document
+---
+
+## My favorite beaches at La Paz, BCS
+## November 15th, 2020
+
+If you ever visit La Paz, BCS in Mexico, I recommend you to visit this beaches :)
+
+```{r leaflet echo=FALSE}
+library(leaflet)
+df <- data.frame(lat = c(24.566029,24.321683,24.323117,24.336141,24.243883), 
+                lng = c(-110.401676,-110.324101,-110.329217,-110.320862,-110.145638), 
+                col = c("Blue","Green","Red","Purple","Orange"), 
+                leg = c("Ensenada Grande","Balandra","Hongo de Balandra","El Tecolote","El Saltito"))
+
+my_map <- df %>%
+          leaflet() %>%
+          addTiles() %>%
+          addCircles(weight = 5, radius = 2000, color = df$col, clusterOptions=) %>%
+          addLegend(label = df$leg, colors = df$col)
+
+my_map
+
+```
